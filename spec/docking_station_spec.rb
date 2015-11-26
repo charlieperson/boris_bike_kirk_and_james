@@ -28,5 +28,10 @@ describe DockingStation do
 		expect(subject.bike).to eq bike
 	end
 
+	it 'docking station full' do
+		20.times{subject.dock Bike.new}
+		expect(subject.count).to eq 20
+	end
+
 
 end
