@@ -1,4 +1,5 @@
 require_relative 'bike'
+require_relative 'van'
 
 class DockingStation
 	DEFAULT_CAPACITY = 20
@@ -20,6 +21,10 @@ class DockingStation
 	def dock(bike)
 		fail 'Docking station full!' if full?
 		@bikes << bike
+	end
+
+	def collect(van)
+		van.van_bikes.flatten << @bikes.delete_if{|x| !x.working}
 	end
 
 	def count

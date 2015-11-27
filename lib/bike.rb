@@ -1,5 +1,5 @@
 class Bike
-	attr_reader :working
+	attr_accessor :working
 
 	def initialize
 		@working = true
@@ -7,5 +7,13 @@ class Bike
 
 	def report
 		@working = false
+		self
 	end
+
+	private
+
+	def mend
+		@working = true
+	end
+
 end

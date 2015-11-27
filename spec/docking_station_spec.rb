@@ -45,4 +45,17 @@ describe DockingStation do
 		subject.dock(double(:broken_bike, working: false))
 		expect{ subject.release_bike }.to raise_error "Sorry mate- it's broken"
 	end
+
+	it "Van collects broken bikes from docking station" do
+		expect(subject).to respond_to(:collect).with(1).argument
+	end
+
+	it "docking station loses broken bikes to van" do
+		subject.dock(double(:broken_bike, working: false))
+		van = double(:van, van_bikes: [])
+		subject.collect(van)
+		expect(subject.bikes.all?{|x| x.working}).to eq true
+	end
+
+
 end
