@@ -13,7 +13,7 @@ class DockingStation
 
 	def release_bike
 		fail 'No bikes available!' if empty?
-		raise "Sorry mate- it's broken" unless broke
+		raise "Sorry mate- it's broken" unless last_working?
 		@bikes.pop
 	end
 
@@ -28,7 +28,7 @@ class DockingStation
 
 	private
 
-	def broke
+	def last_working?
 		@bikes.last.working
 	end
 
